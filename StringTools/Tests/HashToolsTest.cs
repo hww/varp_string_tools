@@ -19,7 +19,7 @@ namespace VARP.StringTools.Tests
         }
         
         [Test]
-        public void HashToolsHash()
+        public void StringToHash()
         {
             // Use the Assert class to test conditions
             Assert.That(HashTools.StringToHash("HelloWorld"), Is.EqualTo(HashTools.StringToHash("HelloWorld")));
@@ -29,7 +29,7 @@ namespace VARP.StringTools.Tests
         }
         
         [Test]
-        public void HashToolsHashCharArray()
+        public void StringToHashRegion()
         {
             // Use the Assert class to test conditions
             Assert.That(HashTools.StringToHash("HelloWorld".ToCharArray(), 1, 4), Is.EqualTo(HashTools.StringToHash("HelloWorld".ToCharArray(),1,4)));
@@ -38,7 +38,7 @@ namespace VARP.StringTools.Tests
         }
         
         [Test]
-        public void HashToolsHashCharArray2()
+        public void StringToHashUpToCharacter()
         {
             // Use the Assert class to test conditions
             Assert.That(HashTools.StringToHash("Hello World".ToCharArray(), 1, ' '), 

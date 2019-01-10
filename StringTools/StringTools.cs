@@ -24,6 +24,7 @@
 
 using System.Text.RegularExpressions;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -33,11 +34,11 @@ namespace VARP.StringTools
     public static partial class StringTools
     {     
         /// <summary>
-        /// Remove spaces
+        /// Remove spaces and non alphanumerics
         /// </summary>
         /// <param name="me"></param>
         /// <returns></returns>
-        public static string ParseOutSpacesAndSymbols(string me)
+        public static string GetAlphanumerics(string me)
         {
             return Regex.Replace(me, "[^A-Za-z0-9]", string.Empty);
         }
@@ -46,13 +47,16 @@ namespace VARP.StringTools
         /// Alphabetize the characters in the string.
 		/// It return all characters used in the string.
         /// </summary>
-        public static string Alphabetize(string s)
+        public static string GetAlphabet(string s)
         {
-            // Convert to char array.
-            var a = s.ToCharArray();
-            // Sort letters.
+            var set = new HashSet<char>();
+            for (var i = 0; i < s.Length; i++)
+                set.Add(s[i]);
+            var a = new char[set.Count];
+            var w = 0;
+            foreach (var c in set)
+                a[w++] = c;
             Array.Sort(a);
-            // Return modified string.
             return new string(a);
         }
 
@@ -67,17 +71,22 @@ namespace VARP.StringTools
         /// <param name="str"></param>
         /// <param name="capitalize"></param>
         /// <returns></returns>
-        public static string Humanize(string str)
+        public static string Humanize(string str,  bool capitalizeSentence = true, bool capitalizeWords = false)
         {
             Debug.Assert(str != null);
-            var capitalize = true;
+            var capitalize = capitalizeSentence;
             var output = string.Empty;
             for (var i = 0; i < str.Length; i++)
             {
                 var c = str[i];
                 if (c == '-' || c == '_')
                 {
-                    capitalize = true;
+                    capitalize = capitalizeWords;
+                    output += ' ';
+                }
+                else if (c == ' ')
+                {
+                    capitalize = capitalizeWords;
                     output += ' ';
                 }
                 else if (c >= 'A' && c <= 'Z')
@@ -186,7 +195,7 @@ namespace VARP.StringTools
         /// <param name="width">Width, in characters, to which the text
         /// should be word wrapped</param>
         /// <returns>The modified text</returns>
-        public static string WordWrap ( string text, int width )
+        public static string WordWrap ( string text, int width)
         {
             Debug.Assert(text != null);
             Debug.Assert(width > 0);
@@ -207,16 +216,19 @@ namespace VARP.StringTools
                 else
                     next = eol + Environment.NewLine.Length;
 
+                bool appendLineBreak = false;
                 // Copy this line of text, breaking into smaller lines as needed
                 if ( eol > pos )
                 {
                     do
                     {
+                        if (appendLineBreak) 
+                            sb.Append ( Environment.NewLine );
                         int len = eol - pos;
                         if ( len > width )
                             len = BreakLine ( text, pos, width );
                         sb.Append ( text, pos, len );
-                        sb.Append ( Environment.NewLine );
+                        appendLineBreak = true;
 
                         // Trim whitespace following break
                         pos += len;
@@ -224,7 +236,7 @@ namespace VARP.StringTools
                             pos++;
                     } while ( eol > pos );
                 }
-                else
+                else 
                     sb.Append ( Environment.NewLine ); // Empty line
             }
             return sb.ToString ( );

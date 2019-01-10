@@ -18,12 +18,12 @@ namespace VARP.StringTools.Tests
         public void TestEmptyAndNullStrings()
         {
             int end = 1;
-            Assert.That(() => StringToDouble.Parse(null, 0, out end),
+            Assert.That(() => StringParser.Parse(null, 0, out end),
                         Throws.TypeOf<ArgumentNullException>());
             Assert.That(end, Is.EqualTo(1)); // Make sure end wasn't touched
 
             //Assert.That(StringToDouble.Parse(string.Empty, 0, out end), Is.EqualTo(default(double)));
-            Assert.That(() => StringToDouble.Parse(string.Empty, 0, out end), 
+            Assert.That(() => StringParser.Parse(string.Empty, 0, out end), 
                         Throws.TypeOf<ArgumentOutOfRangeException>());
             //Assert.That(end, Is.EqualTo(0));
         }
@@ -32,11 +32,11 @@ namespace VARP.StringTools.Tests
         public void TestInvalidStartIndex()
         {
             int end = 1;
-            Assert.That(() => StringToDouble.Parse(string.Empty, 1, out end),
+            Assert.That(() => StringParser.Parse(string.Empty, 1, out end),
                         Throws.TypeOf<ArgumentOutOfRangeException>());
             Assert.That(end, Is.EqualTo(1)); // Make sure end wasn't touched
 
-            Assert.That(() => StringToDouble.Parse(string.Empty, -1, out end),
+            Assert.That(() => StringParser.Parse(string.Empty, -1, out end),
                         Throws.TypeOf<ArgumentOutOfRangeException>());
             Assert.That(end, Is.EqualTo(1)); // Make sure end wasn't touched
         }
@@ -101,7 +101,7 @@ namespace VARP.StringTools.Tests
             foreach (var format in formats)
             {
                 int position;
-                double value = StringToDouble.Parse(format, 0, out position);
+                double value = StringParser.Parse(format, 0, out position);
                 Assert.That(value, Is.EqualTo(default(double)));
                 Assert.That(position, Is.EqualTo(0)); // Make sure it read nothing
             }
@@ -122,7 +122,7 @@ namespace VARP.StringTools.Tests
             foreach (var format in formats)
             {
                 int position;
-                double value = StringToDouble.Parse(format, 0, out position);
+                double value = StringParser.Parse(format, 0, out position);
                 Assert.That(value, Is.EqualTo(1.0));
                 Assert.That(position, Is.EqualTo(2)); // Make sure it read as much as it could
             }
@@ -145,7 +145,7 @@ namespace VARP.StringTools.Tests
             foreach (var format in formats)
             {
                 int position;
-                double value = StringToDouble.Parse(format, 3, out position);
+                double value = StringParser.Parse(format, 3, out position);
                 Assert.That(value, Is.EqualTo(0.0));
                 Assert.That(position, Is.EqualTo(7)); // Make sure it read as much as it could
             }
@@ -154,7 +154,7 @@ namespace VARP.StringTools.Tests
         private static void TestCompleteParse(string input, double expected)
         {
             int position = 0;
-            double parsed = StringToDouble.Parse(input, 0, out position);
+            double parsed = StringParser.Parse(input, 0, out position);
             Assert.That(parsed, Is.EqualTo(expected));
             Assert.That(position, Is.EqualTo(input.Length)); // Make sure it read everything
         }
