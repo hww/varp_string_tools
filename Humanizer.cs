@@ -31,7 +31,7 @@ using UnityEngine;
 namespace VARP.StringTools
 {
 
-    public static partial class StringTools
+    public static class Humanizer
     {     
         /// <summary>
         /// Remove spaces and non alphanumerics

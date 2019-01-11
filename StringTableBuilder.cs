@@ -85,7 +85,7 @@ namespace VARP.StringTools
             foreach ( var word in words )
             {
                 if ( word.Length > wodWidth )
-                    sentence += StringTools.Truncate ( word, wodWidth ).PadRight ( colWidth );
+                    sentence += Humanizer.Truncate ( word, wodWidth ).PadRight ( colWidth );
                 else
                     sentence += word.PadRight ( colWidth );
 
