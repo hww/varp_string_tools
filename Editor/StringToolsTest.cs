@@ -1,11 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
-using VARP.StringTools;
+﻿using NUnit.Framework;
 
-namespace VARP.StringTools.Tests
+namespace Plugins.VARP.StringTools.Tests
 {
     public class StringToolsTest
     {

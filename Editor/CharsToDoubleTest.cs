@@ -3,15 +3,11 @@
 // =============================================================================
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 
-namespace VARP.StringTools.Tests
+namespace Plugins.VARP.StringTools.Tests
 {
-    using VARP.StringTools;
+    using StringTools;
     
     [TestFixture]
     public sealed class CharsToDoubleTest
@@ -22,12 +18,12 @@ namespace VARP.StringTools.Tests
         public void TestEmptyAndNullStrings()
         {
             int end = 1;
-            Assert.That(() => CharsToDouble.Parse(null, 0, 0, out end),
+            Assert.That(() => CharsParser.Parse(null, 0, 0, out end),
                         Throws.TypeOf<ArgumentNullException>());
             Assert.That(end, Is.EqualTo(1)); // Make sure end wasn't touched
 
             //Assert.That(CharsToDouble.Parse(string.Empty, 0, out end), Is.EqualTo(default(double)));
-            Assert.That(() => CharsToDouble.Parse(Empty, 0, 0, out end), 
+            Assert.That(() => CharsParser.Parse(Empty, 0, 0, out end), 
                 Throws.TypeOf<ArgumentOutOfRangeException>());
             //Assert.That(end, Is.EqualTo(0));
         }
@@ -36,11 +32,11 @@ namespace VARP.StringTools.Tests
         public void TestInvalidStartIndex()
         {
             int end = 1;
-            Assert.That(() => CharsToDouble.Parse(Empty, 1, 0, out end),
+            Assert.That(() => CharsParser.Parse(Empty, 1, 0, out end),
                         Throws.TypeOf<ArgumentOutOfRangeException>());
             Assert.That(end, Is.EqualTo(1)); // Make sure end wasn't touched
 
-            Assert.That(() => CharsToDouble.Parse(Empty, -1, 0, out end),
+            Assert.That(() => CharsParser.Parse(Empty, -1, 0, out end),
                         Throws.TypeOf<ArgumentOutOfRangeException>());
             Assert.That(end, Is.EqualTo(1)); // Make sure end wasn't touched
         }
@@ -106,7 +102,7 @@ namespace VARP.StringTools.Tests
             {
                 int position;
                 var formatArray = format.ToCharArray();
-                double value = CharsToDouble.Parse(formatArray, 0, formatArray.Length,out position);
+                double value = CharsParser.Parse(formatArray, 0, formatArray.Length,out position);
                 Assert.That(value, Is.EqualTo(default(double)));
                 Assert.That(position, Is.EqualTo(0)); // Make sure it read nothing
             }
@@ -128,7 +124,7 @@ namespace VARP.StringTools.Tests
             {
                 int position;
                 var formatArray = format.ToCharArray();
-                double value = CharsToDouble.Parse(formatArray, 0,formatArray.Length,out position);
+                double value = CharsParser.Parse(formatArray, 0,formatArray.Length,out position);
                 Assert.That(value, Is.EqualTo(1.0));
                 Assert.That(position, Is.EqualTo(2)); // Make sure it read as much as it could
             }
@@ -152,7 +148,7 @@ namespace VARP.StringTools.Tests
             {
                 int position;
                 var formatArray = format.ToCharArray();
-                double value = CharsToDouble.Parse(formatArray, 3,formatArray.Length, out position);
+                double value = CharsParser.Parse(formatArray, 3,formatArray.Length, out position);
                 Assert.That(value, Is.EqualTo(0.0));
                 Assert.That(position, Is.EqualTo(7)); // Make sure it read as much as it could
             }
@@ -161,7 +157,7 @@ namespace VARP.StringTools.Tests
         private static void TestCompleteParse(string input, double expected)
         {
             int position = 0;
-            double parsed = CharsToDouble.Parse(input.ToCharArray(), 0, input.Length, out position);
+            double parsed = CharsParser.Parse(input.ToCharArray(), 0, input.Length, out position);
             Assert.That(parsed, Is.EqualTo(expected));
             Assert.That(position, Is.EqualTo(input.Length)); // Make sure it read everything
         }

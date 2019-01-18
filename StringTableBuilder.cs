@@ -22,7 +22,7 @@
 // SOFTWARE.
 // =============================================================================
 
-namespace VARP.StringTools
+namespace Plugins.VARP.StringTools
 {
     /// <summary>
     /// This class is the tool for building readable table similar to report of: 'ls' command in bash 

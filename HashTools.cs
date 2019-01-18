@@ -27,7 +27,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Analytics;
 
-namespace VARP.StringTools
+namespace Plugins.VARP.StringTools
 {
     public static class HashTools {
     
@@ -46,7 +46,7 @@ namespace VARP.StringTools
             }
             return hash;
         }
-        
+
         public static ulong StringToHash(string text) 
         {
             ulong prime = 1099511628211u;

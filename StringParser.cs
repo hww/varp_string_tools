@@ -4,7 +4,7 @@
 
 using System;
 
-namespace VARP.StringTools
+namespace Plugins.VARP.StringTools
 {
     /// <summary>
     /// Provides methods to convert a string to a double precision floating

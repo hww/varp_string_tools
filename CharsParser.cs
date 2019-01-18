@@ -4,13 +4,13 @@
 
 using System;
 
-namespace VARP.StringTools
+namespace Plugins.VARP.StringTools
 {
     /// <summary>
     /// Provides methods to convert a string to a double precision floating
     /// point number.
     /// </summary>
-    public static class CharsToDouble
+    public static class CharsParser
     {
         /// <summary>
         /// Extracts a number from the specified string, starting at the

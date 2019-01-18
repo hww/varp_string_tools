@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace VARP.StringTools.Tests
+namespace Plugins.VARP.StringTools.Tests
 {
     public class HashToolsTest
     {
