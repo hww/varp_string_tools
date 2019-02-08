@@ -28,7 +28,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace Plugins.VARP.StringTools
+namespace VARP.StringTools
 {
 
     public static class Humanizer

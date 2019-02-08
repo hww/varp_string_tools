@@ -22,13 +22,7 @@
 // SOFTWARE.
 // =============================================================================
 
-using System.Text.RegularExpressions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
-
-namespace Plugins.VARP.StringTools
+namespace VARP.StringTools
 {
 
     /// <summary>

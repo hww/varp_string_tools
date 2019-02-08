@@ -22,7 +22,7 @@
 // SOFTWARE.
 // =============================================================================
 
-namespace Plugins.VARP.StringTools
+namespace VARP.StringTools
 {
     /// <summary>
     /// Has fixed maximum capacity. Does not produce garbage

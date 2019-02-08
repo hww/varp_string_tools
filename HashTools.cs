@@ -25,9 +25,8 @@
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
-using UnityEngine.Analytics;
 
-namespace Plugins.VARP.StringTools
+namespace VARP.StringTools
 {
     public static class HashTools {
     

@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Plugins.VARP.StringTools.Tests
+namespace VARP.StringTools.Tests
 {
     public class StringToolsTest
     {
